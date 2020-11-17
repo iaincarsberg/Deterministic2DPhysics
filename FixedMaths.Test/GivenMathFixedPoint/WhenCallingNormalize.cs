@@ -49,6 +49,9 @@ namespace FixedMaths.Test.GivenMathFixedPoint
         [InlineData(0.5f, 0.5f)]
         [InlineData(-0.5f, 0.5f)]
         [InlineData(-0.5f, -0.5f)]
+        [InlineData(0, -0.07155067)]
+        [InlineData(0, -0.20415139)]
+        [InlineData(0, 0.0012210013)]
         public void ShouldNormalizeVector(float x, float y)
         {
             var vector = FixedPointVector2.From(FixedPoint.From(x), FixedPoint.From(y));

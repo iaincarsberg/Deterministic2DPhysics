@@ -11,6 +11,9 @@ namespace Physics.Core.Engines
     {
         private readonly IEngineScheduler _engineScheduler;
         private readonly FixedPoint _physicsSimulationsPerSecond;
+        
+        public string Name => nameof(ApplyVelocityEngine);
+        public EntitiesDB entitiesDB { get; set; }
 
         public ApplyVelocityEngine(IEngineScheduler engineScheduler, FixedPoint physicsSimulationsPerSecond)
         {
@@ -23,7 +26,6 @@ namespace Physics.Core.Engines
             _engineScheduler.RegisterScheduledPhysicsEngine(this);
         }
 
-        public EntitiesDB entitiesDB { get; set; }
 
         public void Execute(ulong tick)
         {

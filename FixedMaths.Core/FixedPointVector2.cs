@@ -104,6 +104,12 @@ namespace FixedMaths.Core
         {
             return new FixedPointVector2(v1.X * fp1, v1.Y * fp1);
         }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static FixedPointVector2 operator *(FixedPoint fp1, FixedPointVector2 v1)
+        {
+            return new FixedPointVector2(v1.X * fp1, v1.Y * fp1);
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static FixedPointVector2 operator /(FixedPointVector2 v1, FixedPointVector2 v2)

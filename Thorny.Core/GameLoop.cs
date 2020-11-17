@@ -19,13 +19,16 @@ namespace Thorny.Core
         private const uint DefaultGraphicsFramesPerSecond = 60;
         private const float DefaultSimulationSpeed = 1.0f;
 
+        
+        private readonly EngineScheduler _scheduler;
+        private readonly EngineSchedulerReporter _schedulerReporter;
+        
         private IGraphics _graphics;
         private uint _graphicsFramesPerSecond;
         private IInput _input;
         private uint _physicsSimulationsPerSecond;
         private FixedPoint _physicsSimulationsPerSecondFixedPoint;
         private bool _running;
-        private readonly EngineScheduler _scheduler;
         private IEntityFactory _entityFactory;
         private SimpleEntitiesSubmissionScheduler _simpleSubmissionEntityViewScheduler;
         private PhysicsCoreHandle _physicsCoreHandle;
@@ -37,8 +40,9 @@ namespace Thorny.Core
             SetPhysicsSimulationsPerSecond(DefaultPhysicsSimulationsPerSecond);
             SetGraphicsFramesPerSecond(DefaultGraphicsFramesPerSecond);
             SetSimulationSpeed(DefaultSimulationSpeed);
-            
-            _scheduler = new EngineScheduler();
+
+            _schedulerReporter = new EngineSchedulerReporter();
+            _scheduler = new EngineScheduler(_schedulerReporter);
         }
 
         public void Stop()
@@ -97,19 +101,37 @@ namespace Thorny.Core
             clock.Restart();
 
             EcsInit();
-            _graphics?.Init();
-
+            if (!_graphics?.Init() ?? true)
+            {
+                Console.WriteLine("Graphics exist, but failed to init.");
+                return;
+            }
+            
             _onBeforeMainGameLoop(_entityFactory, _simpleSubmissionEntityViewScheduler);
 
             var physicsAction = ScheduledAction.From(_scheduler.ExecutePhysics, _physicsSimulationsPerSecond, true);
-
+            
             var graphicsAction = ScheduledAction.From(tick =>
             {
                 _graphics?.RenderStart();
                 _scheduler.ExecuteGraphics(FixedPoint.From((float)physicsAction.RemainingDelta / _physicsSimulationsPerSecond), physicsAction.CurrentTick);
+
+                if (_graphics != null)
+                {
+                    _schedulerReporter.Report(_graphics);
+                }
+
                 _graphics?.RenderEnd();
                 
             }, _graphicsFramesPerSecond, false);
+            
+            var perSecond = ScheduledAction.From(tick =>
+            {
+                if (_graphics != null)
+                {
+                    _schedulerReporter.Reset();
+                }
+            }, TicksPerSecond, true);
 
             var lastElapsedTicks = clock.ElapsedTicks;
             var gameTick = 0UL;
@@ -125,6 +147,7 @@ namespace Thorny.Core
                 // Execute simulation ticks
                 graphicsAction.Tick(gameTick);
                 physicsAction.Tick(gameTick);
+                perSecond.Tick(gameTick);
             }
 
             _graphics?.Cleanup();

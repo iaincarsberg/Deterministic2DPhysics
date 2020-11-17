@@ -10,6 +10,8 @@ namespace Physics.Core.Engines
     public class ResolvePenetrationEngine : IQueryingEntitiesEngine, IScheduledPhysicsEngine
     {
         private readonly IEngineScheduler _engineScheduler;
+        
+        public string Name => nameof(ResolvePenetrationEngine);
         public EntitiesDB entitiesDB { get; set; }
         
         public ResolvePenetrationEngine(IEngineScheduler engineScheduler)
@@ -43,10 +45,11 @@ namespace Physics.Core.Engines
 
                     var collisionManifold = manifold.CollisionManifold.Value;
 
+                    /*
                     transform = TransformEntityComponent.From(
                         transform.Position - collisionManifold.Normal,
                         transform.PositionLastPhysicsTick,
-                        transform.Position - collisionManifold.Normal / FixedPoint.Two);
+                        transform.Position - collisionManifold.Normal / FixedPoint.Two);*/
                 }
             }
         }

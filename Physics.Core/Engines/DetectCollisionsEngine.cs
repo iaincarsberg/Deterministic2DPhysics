@@ -15,13 +15,15 @@ namespace Physics.Core.Engines
     public class DetectCollisionsEngine : IQueryingEntitiesEngine, IScheduledPhysicsEngine
     {
         private readonly IEngineScheduler _engineScheduler;
+        
+        public string Name => nameof(DetectCollisionsEngine);
+        public EntitiesDB entitiesDB { get; set; }
 
         public DetectCollisionsEngine(IEngineScheduler engineScheduler)
         {
             _engineScheduler = engineScheduler;
         }
-
-        public EntitiesDB entitiesDB { get; set; }
+        
         public void Ready()
         {
             _engineScheduler.RegisterScheduledPhysicsEngine(this);
@@ -29,19 +31,16 @@ namespace Physics.Core.Engines
 
         public void Execute(ulong tick)
         {
-            foreach (var (data,_) in entitiesDB.QueryEntities<TransformEntityComponent, BoxColliderEntityComponent, CollisionManifoldEntityComponent, RigidbodyEntityComponent, EGIDComponent>(GameGroups.RigidBodyWithBoxColliderGroups))
+            foreach (var ((transforms, colliders, manifolds, rigidBodies, count), _) in entitiesDB.QueryEntities<TransformEntityComponent, BoxColliderEntityComponent, CollisionManifoldEntityComponent, RigidbodyEntityComponent>(GameGroups.RigidBodyWithBoxColliderGroups))
             {
-                var (transforms, colliders, manifolds, egids, rigidBodies, count) = data.ToBuffers();
-                
-                AABBToAABB(tick, transforms, colliders, manifolds, egids, rigidBodies, count);
+                AABBToAABB(tick, transforms, colliders, manifolds, rigidBodies, count);
             }
         }
 
-        private static void AABBToAABB(ulong tick, NB<TransformEntityComponent> transforms, NB<BoxColliderEntityComponent> colliders, NB<CollisionManifoldEntityComponent> manifolds, NB<RigidbodyEntityComponent> rigidBodies, NB<EGIDComponent> egids, int count)
+        private static void AABBToAABB(ulong tick, NB<TransformEntityComponent> transforms, NB<BoxColliderEntityComponent> colliders, NB<CollisionManifoldEntityComponent> manifolds, NB<RigidbodyEntityComponent> rigidBodies, int count)
         {
             for (var a = 0; a < count; a++)
             {
-                ref var egidA = ref egids[a];
                 ref var colliderA = ref colliders[a];
                 ref var transformA = ref transforms[a];
                 ref var manifoldA = ref manifolds[a];
@@ -49,34 +48,28 @@ namespace Physics.Core.Engines
 
                 var aabbA = colliderA.ToAABB(transformA.Position);
 
-                if ((a + 1).Equals(count))
-                {
-                    break;
-                }
-
                 for (var b = a + 1; b < count; b++)
                 {
-                    ref var egidB = ref egids[b];
-                    ref var colliderB = ref colliders[b];
-                    ref var transformB = ref transforms[b];
-                    ref var manifoldB = ref manifolds[b];
                     ref var rigidBodyB = ref rigidBodies[b];
 
                     if (rigidBodyA.IsKinematic && rigidBodyB.IsKinematic)
                     {
                         continue;
                     }
+                    ref var colliderB = ref colliders[b];
+                    ref var transformB = ref transforms[b];
+                    ref var manifoldB = ref manifolds[b];
 
                     var aabbB = colliderB.ToAABB(transformB.Position);
 
                     
-                    var manifold = CalculateManifold(egidA.ID, aabbA, egidB.ID, aabbB);
+                    var manifold = CalculateManifold(aabbA, aabbB);
 
                     if (!manifold.HasValue)
                     {
                         continue;
                     }
-                    
+                    /*
                     FixedPointVector2Logger.Instance.DrawBox(aabbA.Min, aabbA.Max, tick, Colour.LightYellow);
                     FixedPointVector2Logger.Instance.DrawCross(transformA.Position, tick, Colour.LightYellow, 3);
                     FixedPointVector2Logger.Instance.DrawLine(transformA.Position, transformA.PositionLastPhysicsTick, tick, Colour.LightYellow, 3);
@@ -86,14 +79,14 @@ namespace Physics.Core.Engines
                     FixedPointVector2Logger.Instance.DrawLine(transformB.Position, transformB.PositionLastPhysicsTick, tick, Colour.GreenYellow, 3);
                     
                     FixedPointVector2Logger.Instance.DrawCross(transformA.Position + manifold.Value.Normal, tick, Colour.Gold, FixedPoint.ConvertToInteger(manifold.Value.Penetration));
-
+*/
                     manifoldA = CollisionManifoldEntityComponent.From(manifold.Value, CollisionTarget.From(transformB, rigidBodyB));
                     manifoldB = CollisionManifoldEntityComponent.From(manifold.Value.Reverse(), CollisionTarget.From(transformA, rigidBodyA));
                 }
             }
         }
 
-        private static CollisionManifold? CalculateManifold(EGID egidA, AABB a, EGID egidB, AABB b)  {
+        private static CollisionManifold? CalculateManifold(AABB a, AABB b)  {
             // First, calculate the Minkowski difference. a maps to red, and b maps to blue from our example (though it doesn't matter!)
             var top = a.Max.Y - b.Min.Y;
             var bottom = a.Min.Y - b.Max.Y;
@@ -129,8 +122,6 @@ namespace Physics.Core.Engines
                 if (penetration.HasValue)
                 {
                     return CollisionManifold.From(
-                        egidA, 
-                        egidB, 
                         min,
                         penetration.Value.Normalize(), 
                         CollisionType.AABBToAABB);

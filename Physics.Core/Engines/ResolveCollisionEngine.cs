@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using FixedMaths.Core;
 using Physics.Core.CollisionStructures;
 using Physics.Core.EntityComponents;
@@ -12,13 +13,15 @@ namespace Physics.Core.Engines
     public class ResolveCollisionEngine : IQueryingEntitiesEngine, IScheduledPhysicsEngine
     {
         private readonly IEngineScheduler _engineScheduler;
+        
+        public string Name => nameof(ResolveCollisionEngine);
+        public EntitiesDB entitiesDB { get; set; }
 
         public ResolveCollisionEngine(IEngineScheduler engineScheduler)
         {
             _engineScheduler = engineScheduler;
         }
-            
-        public EntitiesDB entitiesDB { get; set; }
+        
         public void Ready()
         {
             _engineScheduler.RegisterScheduledPhysicsEngine(this);
@@ -67,7 +70,7 @@ namespace Physics.Core.Engines
 
             // Calculate impulse scalar
             var j = -(FixedPoint.One + e) * velAlongNormal;
-            j /= rigidbody.InverseMass + collisionTarget.InverseMass;
+            //j /= rigidbody.InverseMass + collisionTarget.InverseMass;
 
             // Apply impulse
             var impulse = manifold.Normal * j;
@@ -75,6 +78,9 @@ namespace Physics.Core.Engines
             //Console.WriteLine($"ResolveCollision {tick} {egid.ID.entityID} {rigidbody.Direction} | {rigidbody.Velocity} - {impulse} * {rigidbody.InverseMass} == {(rigidbody.Velocity - impulse * rigidbody.InverseMass).Normalize()}");
             
             //return rigidbody.CloneAndReplaceDirection((rigidbody.Velocity - impulse * rigidbody.InverseMass).Normalize());
+            
+            
+            Console.WriteLine($"ResolveCollision {tick} {egid.ID.entityID} dir:{rigidbody.Direction} norm: {manifold.Normal} j:{j} | vel:{rigidbody.Velocity} - imp:{impulse} == {(rigidbody.Velocity - impulse)} norm: {(rigidbody.Velocity - impulse).Normalize()}");
             return rigidbody.CloneAndReplaceDirection((rigidbody.Velocity - impulse).Normalize());
         }
     }

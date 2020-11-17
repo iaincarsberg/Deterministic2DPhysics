@@ -18,6 +18,9 @@ namespace Thorny.Core.Engines
     {
         private readonly EngineScheduler _engineScheduler;
         private readonly IGraphics _graphics;
+        
+        public string Name => nameof(DebugPhysicsDrawEngine);
+        public EntitiesDB entitiesDB { get; set; }
 
         public DebugPhysicsDrawEngine(EngineScheduler engineScheduler, IGraphics graphics)
         {
@@ -29,8 +32,6 @@ namespace Thorny.Core.Engines
         {
             _engineScheduler.RegisterScheduledGraphicsEngine(this);
         }
-        
-        public EntitiesDB entitiesDB { get; set; }
 
         public void Draw(FixedPoint delta, ulong physicsTick)
         {
@@ -56,12 +57,13 @@ namespace Thorny.Core.Engines
                 }
             }
             
-            foreach (var ((transforms, colliders, count), _) in entitiesDB.QueryEntities<TransformEntityComponent, BoxColliderEntityComponent>(PhysicsGameGroups.RigidBodyWithBoxColliderGroups))
+            foreach (var ((transforms, colliders, egids, count), _) in entitiesDB.QueryEntities<TransformEntityComponent, BoxColliderEntityComponent, EGIDComponent>(PhysicsGameGroups.RigidBodyWithBoxColliderGroups))
             {
                 for (var i = 0; i < count; i++)
                 {
                     ref var transformEntityComponent = ref transforms[i];
                     ref var boxColliderEntityComponent = ref colliders[i];
+                    ref var egidComponent = ref egids[i];
 
                     var point = transformEntityComponent.Interpolate(delta);
                     var aabb = boxColliderEntityComponent.ToAABB(point);
@@ -70,6 +72,8 @@ namespace Thorny.Core.Engines
                     var (maxX, maxY) = aabb.Max;
 
                     _graphics.DrawBox(Colour.PaleVioletRed, (int) Math.Round(minX), (int) Math.Round(minY), (int) Math.Round(maxX), (int) Math.Round(maxY));
+                    
+                    _graphics.DrawText(Colour.White, (int) Math.Round(minX), (int) Math.Round(maxY), egidComponent.ID.entityID.ToString());
                 }
             }
 

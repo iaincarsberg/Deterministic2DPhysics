@@ -9,6 +9,8 @@ namespace Physics.Core.Engines
     public class ClearPerFrameStateEngine : IQueryingEntitiesEngine, IScheduledPhysicsEngine
     {
         private readonly IEngineScheduler _engineScheduler;
+        
+        public string Name => nameof(ClearPerFrameStateEngine);
         public EntitiesDB entitiesDB { get; set; }
         
         public ClearPerFrameStateEngine(IEngineScheduler engineScheduler)

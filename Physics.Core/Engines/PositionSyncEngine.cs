@@ -11,6 +11,9 @@ namespace Physics.Core.Engines
     {
         private readonly IEngineScheduler _engineScheduler;
         private readonly ExclusiveGroupStruct _group;
+        
+        public string Name => nameof(PositionSyncEngine);
+        public EntitiesDB entitiesDB { get; set; }
 
         public PositionSyncEngine(IEngineScheduler engineScheduler, ExclusiveGroupStruct group)
         {
@@ -18,7 +21,6 @@ namespace Physics.Core.Engines
             _engineScheduler = engineScheduler;
         }
 
-        public EntitiesDB entitiesDB { get; set; }
         public void Ready()
         {
             _engineScheduler.RegisterScheduledPhysicsEngine(this);

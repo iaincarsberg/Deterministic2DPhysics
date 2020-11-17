@@ -16,6 +16,30 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <Visible>False</Visible>
         </None>
+        <None Include="$(ProjectDir)..\Vendor\libfreetype-6.dll">
+            <Link>libfreetype-6.dll</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Visible>False</Visible>
+        </None>
+        <None Include="$(ProjectDir)..\Vendor\SDL2_ttf.dll">
+            <Link>SDL2_ttf.dll</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Visible>False</Visible>
+        </None>
+        <None Include="$(ProjectDir)..\Vendor\zlib1.dll">
+            <Link>zlib1.dll</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Visible>False</Visible>
+        </None>
+        
+        
+        
+
+        <None Include="$(ProjectDir)..\Vendor\open-sans\OpenSans-Light.ttf">
+            <Link>OpenSans-Light.ttf</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Visible>False</Visible>
+        </None>
     </ItemGroup>
 
 </Project>

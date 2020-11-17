@@ -22,7 +22,8 @@ namespace DemoGame
                 .SetPhysicsSimulationsPerSecond(30)
                 .SetSimulationSpeed(1.0f)
                 .SetUncappedGraphicsFramesPerSecond()
-                .SetOnBeforeMainGameLoopAction(AddEntities)
+                .SetOnBeforeMainGameLoopAction(AddLoadsOfEntities)
+                //.SetOnBeforeMainGameLoopAction(AddEntities)
                 .Execute();
         }
         
@@ -73,6 +74,49 @@ namespace DemoGame
                 .SetSpeed(speed)
                 .SetBoxColliderSize(boxColliderSize)
                 .Build(entityFactory, egid);
+        }
+        
+        
+        private static void AddLoadsOfEntities(IEntityFactory entityFactory, SimpleEntitiesSubmissionScheduler simpleSubmissionEntityViewScheduler)
+        {
+            // Make a simple bounding box
+            RigidBodyWithBoxColliderBuilder.Create()
+                .SetPosition(FixedPointVector2.From(FixedPoint.From(0), FixedPoint.From(-100)))
+                .SetBoxColliderSize(FixedPointVector2.From(1000, 5))
+                .SetIsKinematic(true)
+                .Build(entityFactory, 0);
+            
+            RigidBodyWithBoxColliderBuilder.Create()
+                .SetPosition(FixedPointVector2.From(FixedPoint.From(0), FixedPoint.From(100)))
+                .SetBoxColliderSize(FixedPointVector2.From(1000, 5))
+                .SetIsKinematic(true)
+                .Build(entityFactory, 1);
+            
+            RigidBodyWithBoxColliderBuilder.Create()
+                .SetPosition(FixedPointVector2.From(FixedPoint.From(-1000), FixedPoint.From(0)))
+                .SetBoxColliderSize(FixedPointVector2.From(5, 1000))
+                .SetIsKinematic(true)
+                .Build(entityFactory, 2);
+            
+            RigidBodyWithBoxColliderBuilder.Create()
+                .SetPosition(FixedPointVector2.From(FixedPoint.From(1000), FixedPoint.From(0)))
+                .SetBoxColliderSize(FixedPointVector2.From(5, 1000))
+                .SetIsKinematic(true)
+                .Build(entityFactory, 3);
+            
+            // Add some bounding boxes
+            const int boxes = 5;
+            for (var i = 0u; i < boxes; i++)
+            {
+                RigidBodyWithBoxColliderBuilder.Create()
+                    .SetPosition(FixedPointVector2.From(((int)i * 8) - (boxes * 4), (int)i))
+                    .SetDirection(FixedPointVector2.Down)
+                    .SetSpeed(FixedPoint.From(5))
+                    .SetBoxColliderSize(FixedPointVector2.From(3, 3))
+                    .Build(entityFactory, i + 4);
+            }
+            
+            simpleSubmissionEntityViewScheduler.SubmitEntities();
         }
     }
 }

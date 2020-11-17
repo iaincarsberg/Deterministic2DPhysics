@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using FixedMaths.Core;
 using Thorny.Common;
 
@@ -6,13 +7,17 @@ namespace Thorny.Core
 {
     public class EngineScheduler : IEngineScheduler
     {
+        private readonly IEngineSchedulerReporter _reporter;
         private readonly List<IScheduledPhysicsEngine> _scheduledPhysicsEngines;
         private readonly List<IScheduledGraphicsEngine> _scheduledGraphicsEngine;
-        
-        public EngineScheduler()
+        private readonly Stopwatch _stopwatch;
+
+        public EngineScheduler(IEngineSchedulerReporter reporter)
         {
+            _reporter = reporter;
             _scheduledPhysicsEngines = new List<IScheduledPhysicsEngine>();
             _scheduledGraphicsEngine = new List<IScheduledGraphicsEngine>();
+            _stopwatch = Stopwatch.StartNew();
         }
 
         public void RegisterScheduledPhysicsEngine(IScheduledPhysicsEngine scheduled)
@@ -30,7 +35,11 @@ namespace Thorny.Core
         {
             foreach (var engine in _scheduledPhysicsEngines)
             {
+                var before = _stopwatch.ElapsedTicks;
+                
                 engine.Execute(tick);
+
+                _reporter.RecordTicksSpent(engine.Name, _stopwatch.ElapsedTicks - before);
             }
         }
 
@@ -38,7 +47,11 @@ namespace Thorny.Core
         {
             foreach (var engine in _scheduledGraphicsEngine)
             {
+                var before = _stopwatch.ElapsedTicks;
+                
                 engine.Draw(delta, physicsTick);
+                
+                _reporter.RecordTicksSpent(engine.Name, _stopwatch.ElapsedTicks - before);
             }
         }
     }
