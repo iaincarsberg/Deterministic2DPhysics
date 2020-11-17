@@ -1,4 +1,7 @@
-﻿namespace Graphics.Core
+﻿using System;
+using Svelto.ECS;
+
+namespace Graphics.Core
 {
     public interface IInput
     {
@@ -15,5 +18,6 @@
         IGameLoop SetGraphicsFramesPerSecond(uint frequency);
         IGameLoop SetUncappedGraphicsFramesPerSecond();
         IGameLoop SetSimulationSpeed(float simulationSpeed);
+        IGameLoop SetOnBeforeMainGameLoopAction(Action<IEntityFactory, SimpleEntitiesSubmissionScheduler> action);
     }
 }

@@ -1,8 +1,8 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using FixedMaths.Core;
 using Graphics.Core;
 using Physics.Core;
-using Physics.Core.Builders;
 using Svelto.ECS;
 using Thorny.Core.Engines;
 using GameGroups = Thorny.Common.GameGroups;
@@ -30,6 +30,7 @@ namespace Thorny.Core
         private SimpleEntitiesSubmissionScheduler _simpleSubmissionEntityViewScheduler;
         private PhysicsCoreHandle _physicsCoreHandle;
         private float _simulationSpeed;
+        private Action<IEntityFactory, SimpleEntitiesSubmissionScheduler> _onBeforeMainGameLoop = (factory, scheduler) => { };
 
         public GameLoop()
         {
@@ -82,6 +83,12 @@ namespace Thorny.Core
             return this;
         }
 
+        public IGameLoop SetOnBeforeMainGameLoopAction(Action<IEntityFactory, SimpleEntitiesSubmissionScheduler> action)
+        {
+            _onBeforeMainGameLoop = action;
+            return this;
+        }
+
         public void Execute()
         {
             _running = true;
@@ -92,7 +99,7 @@ namespace Thorny.Core
             EcsInit();
             _graphics?.Init();
 
-            AddEntities();
+            _onBeforeMainGameLoop(_entityFactory, _simpleSubmissionEntityViewScheduler);
 
             var physicsAction = ScheduledAction.From(_scheduler.ExecutePhysics, _physicsSimulationsPerSecond, true);
 
@@ -136,55 +143,6 @@ namespace Thorny.Core
             {
                 enginesRoot.AddEngine(new DebugPhysicsDrawEngine(_scheduler, _graphics));
             }
-        }
-
-        private void AddEntities()
-        {
-            // Make a simple bounding box
-            RigidBodyWithBoxColliderBuilder.Create()
-                .SetPosition(FixedPointVector2.From(FixedPoint.From(0), FixedPoint.From(-100)))
-                .SetBoxColliderSize(FixedPointVector2.From(100, 5))
-                .SetIsKinematic(true)
-                .Build(_entityFactory, 0);
-            
-            RigidBodyWithBoxColliderBuilder.Create()
-                .SetPosition(FixedPointVector2.From(FixedPoint.From(0), FixedPoint.From(100)))
-                .SetBoxColliderSize(FixedPointVector2.From(100, 5))
-                .SetIsKinematic(true)
-                .Build(_entityFactory, 1);
-            
-            RigidBodyWithBoxColliderBuilder.Create()
-                .SetPosition(FixedPointVector2.From(FixedPoint.From(-100), FixedPoint.From(0)))
-                .SetBoxColliderSize(FixedPointVector2.From(5, 100))
-                .SetIsKinematic(true)
-                .Build(_entityFactory, 2);
-            
-            RigidBodyWithBoxColliderBuilder.Create()
-                .SetPosition(FixedPointVector2.From(FixedPoint.From(100), FixedPoint.From(0)))
-                .SetBoxColliderSize(FixedPointVector2.From(5, 100))
-                .SetIsKinematic(true)
-                .Build(_entityFactory, 3);
-            
-            // Add some bounding boxes
-            AddEntity(4, FixedPointVector2.From(FixedPoint.From(-30), FixedPoint.From(0)), FixedPointVector2.Down, FixedPoint.From(3), FixedPointVector2.From(10, 10));
-            AddEntity(5, FixedPointVector2.From(FixedPoint.From(-35), FixedPoint.From(-50)), FixedPointVector2.Up, FixedPoint.From(5), FixedPointVector2.From(10, 10));
-            AddEntity(6, FixedPointVector2.From(FixedPoint.From(-30), FixedPoint.From(50)), FixedPointVector2.Up, FixedPoint.From(3), FixedPointVector2.From(10, 10));
-            AddEntity(7, FixedPointVector2.From(FixedPoint.From(0), FixedPoint.From(50)), FixedPointVector2.Right, FixedPoint.From(3), FixedPointVector2.From(10, 10));
-            AddEntity(8, FixedPointVector2.From(FixedPoint.From(40), FixedPoint.From(-90)), FixedPointVector2.From(1, 1).Normalize(), FixedPoint.From(10), FixedPointVector2.From(3, 3));
-            AddEntity(9, FixedPointVector2.From(FixedPoint.From(40), FixedPoint.From(-60)), FixedPointVector2.From(1, 1).Normalize(), FixedPoint.From(10), FixedPointVector2.From(3, 3));
-            AddEntity(10, FixedPointVector2.From(FixedPoint.From(40), FixedPoint.From(-30)), FixedPointVector2.From(1, 1).Normalize(), FixedPoint.From(3), FixedPointVector2.From(3, 3));
-            
-            _simpleSubmissionEntityViewScheduler.SubmitEntities();
-        }
-        
-        private void AddEntity(uint egid, FixedPointVector2 position, FixedPointVector2 direction, FixedPoint speed, FixedPointVector2 boxColliderSize)
-        {
-            RigidBodyWithBoxColliderBuilder.Create()
-                .SetPosition(position)
-                .SetDirection(direction)
-                .SetSpeed(speed)
-                .SetBoxColliderSize(boxColliderSize)
-                .Build(_entityFactory, egid);
         }
     }
 }

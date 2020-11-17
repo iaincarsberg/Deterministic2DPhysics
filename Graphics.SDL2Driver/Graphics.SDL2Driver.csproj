@@ -6,7 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Graphics.Core\Graphics.Core.csproj" />
-      <ProjectReference Include="..\SDL2-CS\SDL2-CS.csproj" />
+      <ProjectReference Include="..\SDL2-CS\SDL2-CS.Core.csproj" />
       <ProjectReference Include="..\Thorny.Core\Thorny.Core.csproj" />
     </ItemGroup>
 
