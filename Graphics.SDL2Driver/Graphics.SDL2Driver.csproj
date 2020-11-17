@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Graphics.Core\Graphics.Core.csproj" />
+      <ProjectReference Include="..\SDL2-CS\SDL2-CS.csproj" />
+      <ProjectReference Include="..\Thorny.Core\Thorny.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="$(ProjectDir)..\Vendor\SDL2.dll">
+            <Link>SDL2.dll</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Visible>False</Visible>
+        </None>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+	</PropertyGroup>
+	<PropertyGroup>
+		<EnableDefaultItems>false</EnableDefaultItems>
+		<AssemblyName>SDL2-CS</AssemblyName>
+		<RootNamespace>SDL2</RootNamespace>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<Compile Include="src\SDL2.cs" />
+		<Compile Include="src\SDL2_image.cs" />
+		<Compile Include="src\SDL2_mixer.cs" />
+		<Compile Include="src\SDL2_ttf.cs" />
+	</ItemGroup>
+</Project>

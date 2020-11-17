@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+
+        <IsPackable>false</IsPackable>
+
+        <LangVersion>7.3</LangVersion>
+
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="coverlet.msbuild" Version="2.8.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="nunit" Version="3.12.0" />
+        <PackageReference Include="NUnit3TestAdapter" Version="3.17.0-beta.1" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.0-preview-20200519-01" />
+        <PackageReference Include="ReportGenerator" Version="4.5.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Svelto.Common\Svelto.Common.csproj" />
+        <ProjectReference Include="..\Svelto.ECS\Svelto.ECS.csproj" />
+    </ItemGroup>
+
+</Project>
