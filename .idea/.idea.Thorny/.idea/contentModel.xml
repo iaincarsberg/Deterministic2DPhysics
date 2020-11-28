@@ -385,7 +385,6 @@
           <e p="MathFixedPointConstants.cs" t="Include" />
           <e p="Operation.cs" t="Include" />
           <e p="ProcessedTableData" t="Include">
-            <e p=".gitignore" t="Include" />
             <e p="math-lut.dat" t="Include" />
           </e>
         </e>

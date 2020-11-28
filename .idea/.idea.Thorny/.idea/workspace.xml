@@ -57,7 +57,6 @@
       <change afterPath="$PROJECT_DIR$/SveltoDeterministic2DPhysicsDemo/Maths/MathFixedPoint.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/SveltoDeterministic2DPhysicsDemo/Maths/MathFixedPointConstants.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/SveltoDeterministic2DPhysicsDemo/Maths/Operation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SveltoDeterministic2DPhysicsDemo/Maths/ProcessedTableData/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/SveltoDeterministic2DPhysicsDemo/Physics/Builders/RigidBodyWithColliderBuilder.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/SveltoDeterministic2DPhysicsDemo/Physics/CollisionStructures/AABB.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/SveltoDeterministic2DPhysicsDemo/Physics/CollisionStructures/CollisionManifold.cs" afterDir="false" />
@@ -212,6 +211,7 @@
       <change beforePath="$PROJECT_DIR$/Physics.Core/PhysicsCore.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Physics.Core/PhysicsCoreHandle.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Physics.Core/Types/CollisionType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL2-CS/.github/FUNDING.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL2-CS/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/SDL2-CS/.gitlab-ci.yml" beforeDir="false" />
@@ -316,7 +316,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Physics.Core/Builders/RigidBodyWithColliderBuilder.cs" />
         <option value="$PROJECT_DIR$/Physics.Core/GameGroups.cs" />
         <option value="$PROJECT_DIR$/Physics.Core/EntityComponents/CircleColliderEntityComponent.cs" />
         <option value="$PROJECT_DIR$/Physics.Core/Engines/DetectCollisionsEngine.cs" />
@@ -367,6 +366,7 @@
         <option value="$PROJECT_DIR$/SveltoDeterministic2DPhysicsDemo/Physics/Engines/ResolvePenetrationEngine.cs" />
         <option value="$PROJECT_DIR$/SveltoDeterministic2DPhysicsDemo/Physics/Engines/ResolveCollisionEngine.cs" />
         <option value="$PROJECT_DIR$/SveltoDeterministic2DPhysicsDemo/Physics/Engines/ClearPerFrameStateEngine.cs" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -381,7 +381,6 @@
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.5185478" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="XThreadsFramesViewSplitterKey" value="0.08215298" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -480,7 +479,7 @@
       <workItem from="1605517668100" duration="22522000" />
       <workItem from="1605603453833" duration="8559000" />
       <workItem from="1605618431273" duration="56508000" />
-      <workItem from="1606502087007" duration="3368000" />
+      <workItem from="1606502087007" duration="3702000" />
     </task>
     <servers />
   </component>
@@ -521,28 +520,28 @@
       <screen x="97" y="0" width="2463" height="1440" />
     </state>
     <state width="824" height="624" key="DebuggerActiveHint/97.0.2463.1440@97.0.2463.1440" timestamp="1605636494403" />
-    <state width="1322" height="603" key="GridCell.Tab.0.bottom" timestamp="1606593875257">
+    <state width="1483" height="434" key="GridCell.Tab.0.bottom" timestamp="1606594237251">
       <screen x="97" y="0" width="2463" height="1440" />
     </state>
-    <state width="1322" height="603" key="GridCell.Tab.0.bottom/97.0.2463.1440@97.0.2463.1440" timestamp="1606593875257" />
+    <state width="1483" height="434" key="GridCell.Tab.0.bottom/97.0.2463.1440@97.0.2463.1440" timestamp="1606594237251" />
     <state width="1830" height="615" key="GridCell.Tab.0.bottom/97.0.2975.1728@97.0.2975.1728" timestamp="1604933714762" />
     <state width="2803" height="463" key="GridCell.Tab.0.bottom/97.0.3743.2160@97.0.3743.2160" timestamp="1604935680666" />
-    <state width="1322" height="603" key="GridCell.Tab.0.center" timestamp="1606593875257">
+    <state width="1483" height="434" key="GridCell.Tab.0.center" timestamp="1606594237251">
       <screen x="97" y="0" width="2463" height="1440" />
     </state>
-    <state width="1322" height="603" key="GridCell.Tab.0.center/97.0.2463.1440@97.0.2463.1440" timestamp="1606593875257" />
+    <state width="1483" height="434" key="GridCell.Tab.0.center/97.0.2463.1440@97.0.2463.1440" timestamp="1606594237251" />
     <state width="1830" height="615" key="GridCell.Tab.0.center/97.0.2975.1728@97.0.2975.1728" timestamp="1604933714762" />
     <state width="2803" height="463" key="GridCell.Tab.0.center/97.0.3743.2160@97.0.3743.2160" timestamp="1604935680666" />
-    <state width="1322" height="603" key="GridCell.Tab.0.left" timestamp="1606593875257">
+    <state width="1483" height="434" key="GridCell.Tab.0.left" timestamp="1606594237251">
       <screen x="97" y="0" width="2463" height="1440" />
     </state>
-    <state width="1322" height="603" key="GridCell.Tab.0.left/97.0.2463.1440@97.0.2463.1440" timestamp="1606593875257" />
+    <state width="1483" height="434" key="GridCell.Tab.0.left/97.0.2463.1440@97.0.2463.1440" timestamp="1606594237251" />
     <state width="1830" height="615" key="GridCell.Tab.0.left/97.0.2975.1728@97.0.2975.1728" timestamp="1604933714761" />
     <state width="2803" height="463" key="GridCell.Tab.0.left/97.0.3743.2160@97.0.3743.2160" timestamp="1604935680666" />
-    <state width="1322" height="603" key="GridCell.Tab.0.right" timestamp="1606593875257">
+    <state width="1483" height="434" key="GridCell.Tab.0.right" timestamp="1606594237251">
       <screen x="97" y="0" width="2463" height="1440" />
     </state>
-    <state width="1322" height="603" key="GridCell.Tab.0.right/97.0.2463.1440@97.0.2463.1440" timestamp="1606593875257" />
+    <state width="1483" height="434" key="GridCell.Tab.0.right/97.0.2463.1440@97.0.2463.1440" timestamp="1606594237251" />
     <state width="1830" height="615" key="GridCell.Tab.0.right/97.0.2975.1728@97.0.2975.1728" timestamp="1604933714762" />
     <state width="2803" height="463" key="GridCell.Tab.0.right/97.0.3743.2160@97.0.3743.2160" timestamp="1604935680666" />
     <state width="1298" height="532" key="GridCell.Tab.1.bottom" timestamp="1606132685118">

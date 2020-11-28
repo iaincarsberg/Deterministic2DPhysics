@@ -58,8 +58,6 @@ namespace SveltoDeterministic2DPhysicsDemo.Physics.Engines
                     var (maxX, maxY) = aabb.Max;
 
                     _graphics.DrawBox(Colour.PaleVioletRed, (int) Math.Round(minX), (int) Math.Round(minY), (int) Math.Round(maxX), (int) Math.Round(maxY));
-                    
-                    _graphics.DrawText(Colour.White, (int) Math.Round(minX), (int) Math.Round(maxY), i.ToString());
                 }
             }
             
@@ -77,8 +75,6 @@ namespace SveltoDeterministic2DPhysicsDemo.Physics.Engines
                     var radius = FixedPoint.ConvertToInteger(circleColliderEntityComponent.Radius);
                     
                     _graphics.DrawCircle(Colour.PaleVioletRed, x, y, radius);
-                    
-                    _graphics.DrawText(Colour.White, x - radius, y + radius, i.ToString());
                 }
             }
 
