@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\iainc\.nuget\packages\microsoft.net.test.sdk\16.7.0-preview-20200519-01\build\netcoreapp2.1" t="Include">
+      <e p="Microsoft.NET.Test.Sdk.Program.cs" t="Include" />
+    </e>
+    <e p="C:\Users\iainc\.nuget\packages\microsoft.testplatform.testhost\16.7.0-preview-20200519-01\build\netcoreapp2.1\x64\testhost.dll" t="Include" />
+    <e p="C:\Users\iainc\.nuget\packages\microsoft.testplatform.testhost\16.7.0-preview-20200519-01\build\netcoreapp2.1\x64\testhost.exe" t="Include" />
+    <e p="C:\Users\iainc\.nuget\packages\nunit3testadapter\3.17.0-beta.1\build\netcoreapp2.1\nunit.engine.api.dll" t="Include" />
+    <e p="C:\Users\iainc\.nuget\packages\nunit3testadapter\3.17.0-beta.1\build\netcoreapp2.1\nunit.engine.dll" t="Include" />
+    <e p="C:\Users\iainc\.nuget\packages\nunit3testadapter\3.17.0-beta.1\build\netcoreapp2.1\NUnit3.TestAdapter.dll" t="Include" />
+    <e p="C:\Users\iainc\.nuget\packages\nunit3testadapter\3.17.0-beta.1\build\netcoreapp2.1\NUnit3.TestAdapter.pdb" t="Include" />
+    <e p="C:\Users\iainc\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\iainc\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Thorny.381128236.00" t="ExcludeRecursive" />
+    <e p="C:\Users\iainc\AppData\Roaming\JetBrains\Rider2020.2\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\iainc\AppData\Roaming\JetBrains\Rider2020.2\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\iainc\Projects\Personal\Deterministic2DPhysics" t="IncludeFlat">
+      <e p="Documentation" t="Include" />
+      <e p="LICENSE" t="Include" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="README.md" t="Include" />
+      <e p="Svelto-3.0-beta" t="Include" />
+      <e p="Svelto.Common" t="IncludeRecursive">
+        <e p=".gitignore" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Command" t="Include">
+          <e p="CommandFactory.cs" t="Include" />
+          <e p="ICommand.cs" t="Include" />
+          <e p="ICommandFactory.cs" t="Include" />
+          <e p="IInjectableCommand.cs" t="Include" />
+        </e>
+        <e p="Context" t="Include">
+          <e p="ContextNotifier.cs" t="Include" />
+          <e p="extensions" t="Include">
+            <e p="Unity" t="Include">
+              <e p="UnityContext.cs" t="Include" />
+            </e>
+          </e>
+          <e p="ICompositionRoot.cs" t="Include" />
+          <e p="IContextNotifer.cs" t="Include" />
+          <e p="IWaitForFrameworkDestruction.cs" t="Include" />
+          <e p="IWaitForFrameworkInitialization.cs" t="Include" />
+        </e>
+        <e p="DataStructures" t="Include">
+          <e p="Arrays" t="Include">
+            <e p="FasterList.cs" t="Include" />
+            <e p="FasterListEnumerator.cs" t="Include" />
+            <e p="FasterReadOnlyList.cs" t="Include" />
+            <e p="IBuffer.cs" t="Include" />
+            <e p="MB.cs" t="Include" />
+            <e p="NB.cs" t="Include" />
+            <e p="ThreadSafeFasterList.cs" t="Include" />
+          </e>
+          <e p="Dictionaries" t="Include">
+            <e p="FasterDictionary.cs" t="Include" />
+            <e p="FasterDictionaryNode.cs" t="Include" />
+            <e p="IBufferStrategy.cs" t="Include" />
+            <e p="IFasterDictionary.cs" t="Include" />
+            <e p="ISveltoDictionary.cs" t="Include" />
+            <e p="ManagedStrategy.cs" t="Include" />
+            <e p="ManagedSveltoDictionary.cs" t="Include" />
+            <e p="NativeStrategy.cs" t="Include" />
+            <e p="ReadonlySveltoDictionaryNative.cs" t="Include" />
+            <e p="SharedSveltoDictionaryNative.cs" t="Include" />
+            <e p="SveltoDictionary.cs" t="Include" />
+            <e p="SveltoDictionaryNative.cs" t="Include" />
+            <e p="ThreadSafeDictionary.cs" t="Include" />
+          </e>
+          <e p="HashHelpers.cs" t="Include" />
+          <e p="ReadOnlyCollectionStruct.cs" t="Include" />
+          <e p="RefWrapper.cs" t="Include" />
+          <e p="RingBuffer.cs" t="Include" />
+          <e p="TypeCache.cs" t="Include" />
+          <e p="WeakReference.cs" t="Include" />
+        </e>
+        <e p="DBC.cs" t="Include" />
+        <e p="DebugExtensions.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="Svelto.Common.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="ObjectPool" t="Include">
+          <e p="IObjectPool.cs" t="Include" />
+          <e p="IObjectPoolDebug.cs" t="Include" />
+          <e p="ObjectPool.cs" t="Include" />
+          <e p="Unity" t="Include">
+            <e p="Editor" t="Include">
+              <e p="PoolDebuggerCustomInspector.cs" t="Include" />
+              <e p="Svelto.Pool.Debugger.asmdef" t="Include" />
+            </e>
+            <e p="GameObjectPool.cs" t="Include" />
+            <e p="MonoBehaviourPool.cs" t="Include" />
+            <e p="PoolDebugger.cs" t="Include" />
+          </e>
+        </e>
+        <e p="package.json" t="Include" />
+        <e p="PlatformProfiler" t="Include">
+          <e p="PlatformProfiler.cs" t="Include" />
+          <e p="StandardProfiler.cs" t="Include" />
+          <e p="Unity" t="Include">
+            <e p="OldUnityPlatform.cs" t="Include" />
+            <e p="UnityPlatform.cs" t="Include" />
+          </e>
+        </e>
+        <e p="README.md" t="Include" />
+        <e p="Sequencer" t="Include">
+          <e p="Sequence.cs" t="Include" />
+        </e>
+        <e p="Svelto.Common.asmdef" t="Include" />
+        <e p="Svelto.Common.csproj" t="IncludeRecursive" />
+        <e p="Utilities" t="Include">
+          <e p="ActionRef.cs" t="Include" />
+          <e p="Console.cs" t="Include" />
+          <e p="DataToString.cs" t="Include" />
+          <e p="FastConcatUtility.cs" t="Include" />
+          <e p="FastInvoke.cs" t="Include" />
+          <e p="ILogger.cs" t="Include" />
+          <e p="MemoryUtilities.cs" t="Include" />
+          <e p="Murmur3.cs" t="Include" />
+          <e p="NetFXCoreWrappers.cs" t="Include" />
+          <e p="ReaderWriterLockSlimEx.cs" t="Include" />
+          <e p="SimpleLogger.cs" t="Include" />
+          <e p="SlowLoggerUnity.cs" t="Include" />
+          <e p="ThreadUtility.cs" t="Include" />
+          <e p="TypeToString.cs" t="Include" />
+          <e p="UnmanagedTypeExtensions.cs" t="Include" />
+          <e p="xxHash.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Svelto.ECS" t="IncludeRecursive">
+        <e p="AllowMultipleAttribute.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="CheckEntityUtilities.cs" t="Include" />
+        <e p="ComponentBuilder.CheckFields.cs" t="Include" />
+        <e p="ComponentBuilder.cs" t="Include" />
+        <e p="Components" t="Include">
+          <e p="EGIDComponent.cs" t="Include" />
+          <e p="EntityHierarchyComponent.cs" t="Include" />
+          <e p="LinkedEntityComponent.cs" t="Include" />
+        </e>
+        <e p="DataStructures" t="Include">
+          <e p="FastTypeSafeDictionary.cs" t="Include" />
+          <e p="ITypeSafeDictionary.cs" t="Include" />
+          <e p="ThreadSafeNativeBagTest.cs" t="Include" />
+          <e p="TypeSafeDictionary.cs" t="Include" />
+          <e p="TypeSafeDictionaryException.cs" t="Include" />
+          <e p="TypeSafeDictionaryUtilities.cs" t="Include" />
+          <e p="Unmanaged" t="Include">
+            <e p="AtomicNativeBags.cs" t="Include" />
+            <e p="NativeBag.cs" t="Include" />
+            <e p="NativeDynamicArray.cs" t="Include" />
+            <e p="NativeDynamicArrayCast.cs" t="Include" />
+            <e p="NativeDynamicArrayUnityExtension.cs" t="Include" />
+            <e p="SharedNativeInt.cs" t="Include" />
+            <e p="ThreadSafeNativeBag.cs" t="Include" />
+            <e p="UnsafeArray.cs" t="Include" />
+            <e p="UnsafeBlob.cs" t="Include" />
+          </e>
+        </e>
+        <e p="DBC.cs" t="Include" />
+        <e p="Debugger" t="Include">
+          <e p="ExclusiveGroupDebugger.cs" t="Include" />
+        </e>
+        <e p="Dispatcher" t="Include">
+          <e p="DispatchOnChange.cs" t="Include" />
+          <e p="DispatchOnSet.cs" t="Include" />
+        </e>
+        <e p="DynamicEntityDescriptor.cs" t="Include" />
+        <e p="ECSException.cs" t="Include" />
+        <e p="ECSResources" t="Include">
+          <e p="ECSResources.cs" t="Include" />
+          <e p="ECSString.cs" t="Include" />
+        </e>
+        <e p="EGID.cs" t="Include" />
+        <e p="EGIDMapper.cs" t="Include" />
+        <e p="EnginesRoot.DoubleBufferedEntitiesToAdd.cs" t="Include" />
+        <e p="EnginesRoot.Engines.cs" t="Include" />
+        <e p="EnginesRoot.Entities.cs" t="Include" />
+        <e p="EnginesRoot.GenericEntityFactory.cs" t="Include" />
+        <e p="EnginesRoot.GenericEntityFunctions.cs" t="Include" />
+        <e p="EnginesRoot.Submission.cs" t="Include" />
+        <e p="EntitiesDB.cs" t="Include" />
+        <e p="EntitiesDB.FindGroups.cs" t="Include" />
+        <e p="EntityCollection.cs" t="Include" />
+        <e p="EntityComponentInitializer.cs" t="Include" />
+        <e p="EntityDescriptorTemplate.cs" t="Include" />
+        <e p="EntityFactory.cs" t="Include" />
+        <e p="EntityGroupNotFoundException.cs" t="Include" />
+        <e p="EntityInfoView.cs" t="Include" />
+        <e p="EntityNotFoundException.cs" t="Include" />
+        <e p="EntitySubmissionScheduler.cs" t="Include" />
+        <e p="EntitySubmitOperation.cs" t="Include" />
+        <e p="EntityViewUtility.cs" t="Include" />
+        <e p="ExclusiveGroup.cs" t="Include" />
+        <e p="ExclusiveGroupStruct.cs" t="Include" />
+        <e p="ExtendibleEntityDescriptor.cs" t="Include" />
+        <e p="extensions" t="Include">
+          <e p="ProcessorCount.cs" t="Include" />
+          <e p="Svelto" t="Include">
+            <e p="AllGroupsEnumerable.cs" t="Include" />
+            <e p="EntityCollectionExtension.cs" t="Include" />
+            <e p="EntityManagedDBExtensions.cs" t="Include" />
+            <e p="EntityNativeDBExtensions.cs" t="Include" />
+            <e p="ExclusiveGroupExtensions.cs" t="Include" />
+            <e p="GroupsEnumerable.cs" t="Include" />
+          </e>
+          <e p="Unity" t="Include">
+            <e p="DOTS" t="Include">
+              <e p="DisposeJob.cs" t="Include" />
+              <e p="EnginesRoot.NativeOperation.cs" t="Include" />
+              <e p="JobifedEnginesGroup.cs" t="Include" />
+              <e p="JobifiedSveltoEngines.cs" t="Include" />
+              <e p="NativeEGIDMapper.cs" t="Include" />
+              <e p="NativeEGIDMultiMapper.cs" t="Include" />
+              <e p="NativeEntityComponentInitializer.cs" t="Include" />
+              <e p="NativeEntityFactory.cs" t="Include" />
+              <e p="NativeEntityRemove.cs" t="Include" />
+              <e p="NativeEntitySwap.cs" t="Include" />
+              <e p="PureUECSSystemsGroup.cs" t="Include" />
+              <e p="SortedJobifedEnginesGroup.cs" t="Include" />
+              <e p="SyncSveltoToUECSGroup.cs" t="Include" />
+              <e p="UECSSveltoEGID.cs" t="Include" />
+              <e p="UnityEntityDBExtensions.cs" t="Include" />
+              <e p="UnityJobExtensions.cs" t="Include" />
+            </e>
+            <e p="EGIDHolderImplementor.cs" t="Include" />
+            <e p="GenericEntityDescriptorHolder.cs" t="Include" />
+            <e p="SveltoGUIHelper.cs" t="Include" />
+            <e p="UnityEntitySubmissionScheduler.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Filters" t="Include">
+          <e p="EntitiesDB.GroupFilters.cs" t="Include" />
+          <e p="FilteredIndices.cs" t="Include" />
+          <e p="FilterGroup.cs" t="Include" />
+          <e p="GroupFilters.cs" t="Include" />
+        </e>
+        <e p="GenericEntityDescriptor.cs" t="Include" />
+        <e p="GlobalTypeID.cs" t="Include" />
+        <e p="GroupCompound.cs" t="Include" />
+        <e p="Hybrid" t="Include">
+          <e p="IEntityViewComponent.cs" t="Include" />
+          <e p="IImplementor.cs" t="Include" />
+        </e>
+        <e p="IComponentBuilder.cs" t="Include" />
+        <e p="IEngine.cs" t="Include" />
+        <e p="IEntityComponent.cs" t="Include" />
+        <e p="IEntityDescriptorHolder.cs" t="Include" />
+        <e p="IEntityFactory.cs" t="Include" />
+        <e p="IEntityFunctions.cs" t="Include" />
+        <e p="IQueryingEntitiesEngine.cs" t="Include" />
+        <e p="IReactOnAddAndRemove.cs" t="Include" />
+        <e p="IReactOnSwap.cs" t="Include" />
+        <e p="LICENSE" t="Include" />
+        <e p="NamedExclusiveGroup.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="Svelto.ECS.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="package.json" t="Include" />
+        <e p="QueryGroups.cs" t="Include" />
+        <e p="README.md" t="Include" />
+        <e p="Serialization" t="Include">
+          <e p="ComposedComponentSerializer.cs" t="Include" />
+          <e p="DefaultSerializer.cs" t="Include" />
+          <e p="DefaultSerializerUtils.cs" t="Include" />
+          <e p="DefaultVersioningFactory.cs" t="Include" />
+          <e p="DoNotSerializeAttribute.cs" t="Include" />
+          <e p="DontSerialize.cs" t="Include" />
+          <e p="EnginesRoot.GenericEntitySerialization.cs" t="Include" />
+          <e p="EnginesRoot.SerializableEntityHeader.cs" t="Include" />
+          <e p="EntitiesDB.SerializationDescriptorMap.cs" t="Include" />
+          <e p="HashNameAttribute.cs" t="Include" />
+          <e p="IComponentSerializer.cs" t="Include" />
+          <e p="IDeserializationFactory.cs" t="Include" />
+          <e p="IEntitySerialization.cs" t="Include" />
+          <e p="ISerializableComponentBuilder.cs" t="Include" />
+          <e p="ISerializableEntityDescriptor.cs" t="Include" />
+          <e p="ISerializationData.cs" t="Include" />
+          <e p="PartialSerializer.cs" t="Include" />
+          <e p="SerializableComponentBuilder.cs" t="Include" />
+          <e p="SerializableEntityComponent.cs" t="Include" />
+          <e p="SerializableEntityDescriptor.cs" t="Include" />
+          <e p="SerializationEntityDescriptorTemplate.cs" t="Include" />
+          <e p="SerializerExt.cs" t="Include" />
+          <e p="SimpleSerializationData.cs" t="Include" />
+        </e>
+        <e p="SetEGIDWithoutBoxing.cs" t="Include" />
+        <e p="SimpleEntitiesSubmissionScheduler.cs" t="Include" />
+        <e p="SortedEnginesGroup.cs" t="Include" />
+        <e p="Streams" t="Include">
+          <e p="Consumer.cs" t="Include" />
+          <e p="EnginesRoot.Streams.cs" t="Include" />
+          <e p="EntitiesDB.Streams.cs" t="Include" />
+          <e p="EntitiesStreams.cs" t="Include" />
+          <e p="EntityStream.cs" t="Include" />
+          <e p="GenericentityStreamConsumerFactory.cs" t="Include" />
+          <e p="ThreadSafeNativeEntityStream.cs" t="Include" />
+        </e>
+        <e p="Svelto.ECS.asmdef" t="Include" />
+        <e p="Svelto.ECS.csproj" t="IncludeRecursive" />
+        <e p="TypeSafeDictionaryFactory.cs" t="Include" />
+        <e p="UnsortedEnginesGroup.cs" t="Include" />
+        <e p="WaitForSubmissionEnumerator.cs" t="Include" />
+      </e>
+      <e p="Svelto.ECS.Tests" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Common" t="Include">
+          <e p="DataStructures" t="Include">
+            <e p="FasterDictionaryTests.cs" t="Include" />
+            <e p="ThreadSafeNativeBagTest.cs" t="Include" />
+          </e>
+        </e>
+        <e p="coverage-readme.txt" t="Include" />
+        <e p="coverage.bat" t="Include" />
+        <e p="ECS" t="Include">
+          <e p="EnginesRoot.GenericEntityFunctionsTests.cs" t="Include" />
+          <e p="EnginesRootSerializationTests.cs" t="Include" />
+          <e p="EnginesRootTests.cs" t="Include" />
+          <e p="EntityCollectionTests.cs" t="Include" />
+          <e p="Filters" t="Include">
+            <e p="FilterGroupsTests.cs" t="Include" />
+          </e>
+        </e>
+        <e p="GroupCompoundTests.cs" t="Include" />
+        <e p="NativeTests.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Svelto.ECS.Tests.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Svelto.ECS.Tests.csproj" t="IncludeRecursive" />
+        <e p="SveltoDictionariesTests.cs" t="Include" />
+        <e p="SveltoMegaSwapsTests.cs" t="Include" />
+        <e p="SveltoSerialisationTests.cs" t="Include" />
+        <e p="SveltoTests.cs" t="Include" />
+        <e p="TestHelpers" t="Include">
+          <e p="TestEngine.cs" t="Include" />
+          <e p="TestEntityStruct.cs" t="Include" />
+          <e p="TestEntityViewComponentWithString.cs" t="Include" />
+          <e p="TestEntityViewStruct.cs" t="Include" />
+          <e p="TestEntityWithComponentViewAndComponentStruct.cs" t="Include" />
+        </e>
+      </e>
+      <e p="SveltoDeterministic2DPhysicsDemo" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="EngineScheduler.cs" t="Include" />
+        <e p="EngineSchedulerReporter.cs" t="Include" />
+        <e p="GameLoop.cs" t="Include" />
+        <e p="Graphics" t="Include">
+          <e p="Colour.cs" t="Include" />
+          <e p="extensions" t="Include">
+            <e p="ColourExtensions.cs" t="Include" />
+          </e>
+          <e p="IGraphics.cs" t="Include" />
+          <e p="IInput.cs" t="Include" />
+          <e p="SDL2.cs" t="Include" />
+          <e p="SDL2_ttf.cs" t="Include" />
+          <e p="SDL2Driver.cs" t="Include" />
+        </e>
+        <e p="IEngineScheduler.cs" t="Include" />
+        <e p="IScheduledGraphicsEngine.cs" t="Include" />
+        <e p="IScheduledPhysicsEngine.cs" t="Include" />
+        <e p="Maths" t="Include">
+          <e p="Data" t="Include">
+            <e p="IProcessedTableRepository.cs" t="Include" />
+            <e p="ProcessedTableDto.cs" t="Include" />
+            <e p="ProcessedTableRepository.cs" t="Include" />
+            <e p="ProcessedTableService.cs" t="Include" />
+            <e p="SerializeOperationValue.cs" t="Include" />
+          </e>
+          <e p="ExceptionBecause.cs" t="Include" />
+          <e p="FixedPoint.cs" t="Include" />
+          <e p="FixedPointEqualityComparer.cs" t="Include" />
+          <e p="FixedPointVector2.cs" t="Include" />
+          <e p="MathFixedPoint.cs" t="Include" />
+          <e p="MathFixedPointConstants.cs" t="Include" />
+          <e p="Operation.cs" t="Include" />
+          <e p="ProcessedTableData" t="Include">
+            <e p=".gitignore" t="Include" />
+            <e p="math-lut.dat" t="Include" />
+          </e>
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="SveltoDeterministic2DPhysicsDemo.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Physics" t="Include">
+          <e p="Builders" t="Include">
+            <e p="RigidBodyWithColliderBuilder.cs" t="Include" />
+          </e>
+          <e p="CollisionStructures" t="Include">
+            <e p="AABB.cs" t="Include" />
+            <e p="CollisionManifold.cs" t="Include" />
+          </e>
+          <e p="Descriptors" t="Include">
+            <e p="RigidBodyDescriptor.cs" t="Include" />
+            <e p="RigidBodyWithBoxColliderDescriptor.cs" t="Include" />
+            <e p="RigidBodyWithCircleColliderDescriptor.cs" t="Include" />
+            <e p="TransformDescriptor.cs" t="Include" />
+          </e>
+          <e p="Engines" t="Include">
+            <e p="ApplyVelocityEngine.cs" t="Include" />
+            <e p="ClearPerFrameStateEngine.cs" t="Include" />
+            <e p="DebugPhysicsDrawEngine.cs" t="Include" />
+            <e p="DetectBoxVsBoxCollisionsEngine.cs" t="Include" />
+            <e p="PhysicsEngineNames.cs" t="Include" />
+            <e p="ResolveCollisionEngine.cs" t="Include" />
+            <e p="ResolvePenetrationEngine.cs" t="Include" />
+          </e>
+          <e p="EntityComponents" t="Include">
+            <e p="BoxColliderEntityComponent.cs" t="Include" />
+            <e p="CircleColliderEntityComponent.cs" t="Include" />
+            <e p="CollisionManifoldEntityComponent.cs" t="Include" />
+            <e p="RigidbodyEntityComponent.cs" t="Include" />
+            <e p="TransformEntityComponent.cs" t="Include" />
+          </e>
+          <e p="GameGroups.cs" t="Include" />
+          <e p="Loggers" t="Include">
+            <e p="Data" t="Include">
+              <e p="Shape.cs" t="Include" />
+            </e>
+            <e p="FixedPointVector2Logger.cs" t="Include" />
+          </e>
+          <e p="PhysicsCore.cs" t="Include" />
+          <e p="Types" t="Include">
+            <e p="CollisionType.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="ScheduledAction.cs" t="Include" />
+        <e p="SveltoDeterministic2DPhysicsDemo.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="Thorny.sln" t="IncludeFlat" />
+      <e p="Vendor\libfreetype-6.dll" t="Include" />
+      <e p="Vendor\open-sans\OpenSans-Light.ttf" t="Include" />
+      <e p="Vendor\SDL2.dll" t="Include" />
+      <e p="Vendor\SDL2_ttf.dll" t="Include" />
+      <e p="Vendor\zlib1.dll" t="Include" />
+    </e>
+  </component>
+</project>
