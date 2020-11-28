@@ -1,4 +1,5 @@
-﻿using Physics.Core.CollisionStructures;
+﻿using System;
+using Physics.Core.CollisionStructures;
 using Svelto.ECS;
 
 namespace Physics.Core.EntityComponents
@@ -7,18 +8,32 @@ namespace Physics.Core.EntityComponents
     {
         public static readonly CollisionManifoldEntityComponent Default = new CollisionManifoldEntityComponent();
         
-        public static CollisionManifoldEntityComponent From(CollisionManifold collisionManifold, CollisionTarget collisionTarget)
+        public static CollisionManifoldEntityComponent From(CollisionManifold collisionManifold)
         {
-            return new CollisionManifoldEntityComponent(collisionManifold, collisionTarget);
+            return new CollisionManifoldEntityComponent(collisionManifold);
         }
         
         public readonly CollisionManifold? CollisionManifold;
-        public readonly CollisionTarget? CollisionTarget;
 
-        private CollisionManifoldEntityComponent(CollisionManifold? collisionManifold, CollisionTarget? collisionTarget)
+        private CollisionManifoldEntityComponent(CollisionManifold? collisionManifold)
         {
             CollisionManifold = collisionManifold;
-            CollisionTarget = collisionTarget;
+        }
+        
+        
+        private bool Equals(CollisionManifoldEntityComponent other)
+        {
+            return Nullable.Equals(CollisionManifold, other.CollisionManifold) && CollisionManifold.Equals(other.CollisionManifold);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is CollisionManifoldEntityComponent other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return CollisionManifold.GetHashCode();
         }
     }
 }

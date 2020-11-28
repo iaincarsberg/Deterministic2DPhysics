@@ -3,7 +3,9 @@
     public enum PhysicsEngineNames
     {
         ApplyVelocityEngine,
-        DetectCollisionsEngine,
+        DetectBoxVsBoxCollisionsEngine,
+        DetectCircleVsCircleCollisionsEngine,
+        DetectBoxVsCircleCollisionsEngine,
         ResolveCollisionEngine,
         ResolvePenetrationEngine,
         PositionSyncEngine,

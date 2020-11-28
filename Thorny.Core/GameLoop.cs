@@ -145,7 +145,7 @@ namespace Thorny.Core
                 lastElapsedTicks = elapsedTicks;
 
                 // Execute simulation ticks
-                graphicsAction.Tick(gameTick);
+                graphicsAction.Tick((ulong)elapsedTicks);
                 physicsAction.Tick(gameTick);
                 perSecond.Tick(gameTick);
             }
@@ -161,6 +161,11 @@ namespace Thorny.Core
             _entityFactory = enginesRoot.GenerateEntityFactory();
 
             _physicsCoreHandle = PhysicsCore.RegisterTo(enginesRoot, _scheduler, _physicsSimulationsPerSecondFixedPoint, GameGroups.Debug);
+            
+            _physicsCoreHandle.RegisterSimulationSpeedControl(speed =>
+            {
+                _simulationSpeed = speed;
+            });
 
             if (_graphics != null)
             {

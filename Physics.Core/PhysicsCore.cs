@@ -9,28 +9,19 @@ namespace Physics.Core
     {
         public static PhysicsCoreHandle RegisterTo(EnginesRoot enginesRoot, IEngineScheduler scheduler, FixedPoint physicsSimulationsPerSecond, ExclusiveGroupStruct syncGroup)
         {
+            var entityFactory = enginesRoot.GenerateEntityFactory();
+            var instance = new PhysicsCoreHandle(entityFactory);
+            
             enginesRoot.AddEngine(new ApplyVelocityEngine(scheduler, physicsSimulationsPerSecond));
-            enginesRoot.AddEngine(new DetectCollisionsEngine(scheduler));
-            enginesRoot.AddEngine(new ResolvePenetrationEngine(scheduler));
+            enginesRoot.AddEngine(new DetectBoxVsBoxCollisionsEngine(scheduler));
+            enginesRoot.AddEngine(new DetectCircleVsCircleCollisionsEngine(scheduler));
+            enginesRoot.AddEngine(new DetectBoxVsCircleCollisionsEngine(scheduler));
             enginesRoot.AddEngine(new ResolveCollisionEngine(scheduler));
+            enginesRoot.AddEngine(new ResolvePenetrationEngine(scheduler, instance));
             enginesRoot.AddEngine(new ClearPerFrameStateEngine(scheduler));
             enginesRoot.AddEngine(new PositionSyncEngine(scheduler, syncGroup));
 
-            var entityFactory = enginesRoot.GenerateEntityFactory();
-            
-            var instance = new PhysicsCoreHandle(entityFactory);
-            
             return instance;
-        }
-    }
-
-    public class PhysicsCoreHandle
-    {
-        private readonly IEntityFactory _entityFactory;
-
-        public PhysicsCoreHandle(IEntityFactory entityFactory)
-        {
-            _entityFactory = entityFactory;
         }
     }
 }

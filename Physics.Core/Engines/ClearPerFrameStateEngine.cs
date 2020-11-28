@@ -1,4 +1,5 @@
-﻿using Physics.Core.EntityComponents;
+﻿using System;
+using Physics.Core.EntityComponents;
 using Svelto.Common;
 using Svelto.ECS;
 using Thorny.Common;
@@ -25,10 +26,17 @@ namespace Physics.Core.Engines
 
         public void Execute(ulong tick)
         {
-            foreach (var ((manifolds, count), _) in entitiesDB.QueryEntities<CollisionManifoldEntityComponent>(GameGroups.RigidBodyGroups))
+            foreach (var ((manifolds, count), group) in entitiesDB.QueryEntities<CollisionManifoldEntityComponent>(GameGroups.RigidBodyGroups))
             {
                 for (var i = 0; i < count; i++)
                 {
+                    /*
+                    if (!manifolds[i].Equals(CollisionManifoldEntityComponent.Default))
+                    {
+                        Console.WriteLine($"clear {(group.Equals(GameGroups.RigidBodyWithBoxCollider) ? "box" : "circle")} {i}");
+                    }
+                    */
+
                     manifolds[i] = CollisionManifoldEntityComponent.Default;
                 }
             }

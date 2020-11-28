@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace FixedMaths.Core
 {
@@ -159,8 +160,28 @@ namespace FixedMaths.Core
             return new FixedPointVector2(MathFixedPoint.Sign(X), MathFixedPoint.Sign(Y));
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public FixedPoint Length()
+        {
+            return MathFixedPoint.Magnitude(this);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public FixedPoint LengthSquared()
+        {
+            var length = Length();
+            return length * length;
+        }
+
+        public FixedPointVector2 CloneWithReplacedX(FixedPoint x)
+        {
+            return new FixedPointVector2(x, Y);
+        }
         
-        
+        public FixedPointVector2 CloneWithReplacedY(FixedPoint y)
+        {
+            return new FixedPointVector2(X, y);
+        }
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ToString()
@@ -173,6 +194,22 @@ namespace FixedMaths.Core
         {
             x = FixedPoint.ConvertToFloat(X);
             y = FixedPoint.ConvertToFloat(Y);
+        }
+
+
+        private bool Equals(FixedPointVector2 other)
+        {
+            return X.Equals(other.X) && Y.Equals(other.Y);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is FixedPointVector2 other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(X, Y);
         }
     }
 }

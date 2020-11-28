@@ -265,6 +265,12 @@ namespace FixedMaths.Core
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public FixedPoint Squared()
+        {
+            return this * this;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool Equals(FixedPoint other)
         {
             return Value == other.Value && _isNaN == other._isNaN;

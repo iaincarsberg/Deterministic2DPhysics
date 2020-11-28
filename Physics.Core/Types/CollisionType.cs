@@ -2,6 +2,8 @@
 {
     public enum CollisionType
     {
-        AABBToAABB
+        AABBToAABB,
+        CircleToCircle,
+        AABBToCircle
     }
 }

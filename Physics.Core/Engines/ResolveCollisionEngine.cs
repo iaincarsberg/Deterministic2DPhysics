@@ -3,7 +3,9 @@ using System.Runtime.CompilerServices;
 using FixedMaths.Core;
 using Physics.Core.CollisionStructures;
 using Physics.Core.EntityComponents;
+using Physics.Core.Types;
 using Svelto.Common;
+using Svelto.DataStructures;
 using Svelto.ECS;
 using Thorny.Common;
 
@@ -29,32 +31,95 @@ namespace Physics.Core.Engines
 
         public void Execute(ulong tick)
         {
-            foreach (var ((rigidbodies, manifolds, egids, count), _) in entitiesDB.QueryEntities<RigidbodyEntityComponent, CollisionManifoldEntityComponent, EGIDComponent>(GameGroups.RigidBodyGroups))
+            var boxRigidbodies = new NB<RigidbodyEntityComponent>();
+            var boxManifolds = new NB<CollisionManifoldEntityComponent>();
+            var boxCount = 0;
+            var circleRigidbodies = new NB<RigidbodyEntityComponent>();
+            var circleManifolds = new NB<CollisionManifoldEntityComponent>();
+            var circleCount = 0;
+            
+            foreach (var ((rigidbodies, manifolds, count), groupStruct) in entitiesDB.QueryEntities<RigidbodyEntityComponent, CollisionManifoldEntityComponent>(GameGroups.RigidBodyGroups))
             {
+                if (groupStruct.Equals(GameGroups.RigidBodyWithBoxCollider))
+                {
+                    boxRigidbodies = rigidbodies;
+                    boxManifolds = manifolds;
+                    boxCount = count;
+                }
+                if (groupStruct.Equals(GameGroups.RigidBodyWithCircleCollider))
+                {
+                    circleRigidbodies = rigidbodies;
+                    circleManifolds = manifolds;
+                    circleCount = count;
+                }
+            }
+
+            for (var i = 0; i < boxCount; i++)
+            {
+                ref var manifold = ref boxManifolds[i];
+
+                if (!manifold.CollisionManifold.HasValue)
+                {
+                    continue;
+                }
+
+                if (manifold.CollisionManifold.Value.CollisionType.Equals(CollisionType.AABBToCircle))
+                {
+                    ResolveCollision(i, manifold.CollisionManifold.Value, ref boxRigidbodies[manifold.CollisionManifold.Value.EntityIndex1], ref circleRigidbodies[manifold.CollisionManifold.Value.EntityIndex2]);
+                }
+                else
+                {
+                    ResolveCollision(i, manifold.CollisionManifold.Value, ref boxRigidbodies[manifold.CollisionManifold.Value.EntityIndex1], ref boxRigidbodies[manifold.CollisionManifold.Value.EntityIndex2]);
+                }
+            }
+            
+            for (var i = 0; i < circleCount; i++)
+            {
+                ref var manifold = ref circleManifolds[i];
+
+                if (!manifold.CollisionManifold.HasValue)
+                {
+                    continue;
+                }
+
+                if (manifold.CollisionManifold.Value.CollisionType.Equals(CollisionType.AABBToCircle))
+                {
+                    ResolveCollision(i, manifold.CollisionManifold.Value, ref boxRigidbodies[manifold.CollisionManifold.Value.EntityIndex1], ref circleRigidbodies[manifold.CollisionManifold.Value.EntityIndex2]);
+                }
+                else
+                {
+                    ResolveCollision(i, manifold.CollisionManifold.Value, ref circleRigidbodies[manifold.CollisionManifold.Value.EntityIndex1], ref circleRigidbodies[manifold.CollisionManifold.Value.EntityIndex2]);
+                }
+            }
+
+/*
+            foreach (var ((rigidbodies, manifolds, count), groupStruct) in entitiesDB.QueryEntities<RigidbodyEntityComponent, CollisionManifoldEntityComponent>(GameGroups.RigidBodyGroups))
+            {
+                Console.WriteLine($"box: {groupStruct.Equals(GameGroups.RigidBodyWithBoxCollider)}, circle: {groupStruct.Equals(GameGroups.RigidBodyWithCircleCollider)}");
+                
+                Console.WriteLine($"group {count}");
                 for (var i = 0; i < count; i++)
                 {
                     ref var manifold = ref manifolds[i];
-                    ref var rigidbody = ref rigidbodies[i];
-                    ref var egid = ref egids[i];
 
-                    if (rigidbody.IsKinematic)
+                    if (!manifold.CollisionManifold.HasValue)
                     {
                         continue;
                     }
 
-                    if (manifold.CollisionManifold.HasValue && manifold.CollisionTarget.HasValue)
-                    {
-                        rigidbody = ResolveCollision(egid, tick, manifold.CollisionManifold.Value, rigidbody, manifold.CollisionTarget.Value);
-                    }
+                    Console.WriteLine($"count: {count}, idx1: {manifold.CollisionManifold.Value.EntityIndex1}, idx2: {manifold.CollisionManifold.Value.EntityIndex2}");
+
+                    ResolveCollision(i, manifold.CollisionManifold.Value, ref rigidbodies[manifold.CollisionManifold.Value.EntityIndex1], ref rigidbodies[manifold.CollisionManifold.Value.EntityIndex2]);
                 }
             }
+*/
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static RigidbodyEntityComponent ResolveCollision(EGIDComponent egid, ulong tick, CollisionManifold manifold, RigidbodyEntityComponent rigidbody, CollisionTarget collisionTarget)
+        private static void ResolveCollision(int index, CollisionManifold manifold, ref RigidbodyEntityComponent rigidbodyA, ref RigidbodyEntityComponent rigidbodyB)
         {
             // Calculate relative velocity
-            var rv = collisionTarget.Velocity - rigidbody.Velocity;
+            var rv = rigidbodyB.Velocity - rigidbodyA.Velocity;
 
             // Calculate relative velocity in terms of the normal direction
             var velAlongNormal = FixedPointVector2.Dot(rv, manifold.Normal);
@@ -62,11 +127,11 @@ namespace Physics.Core.Engines
             // Do not resolve if velocities are separating
             if (velAlongNormal > FixedPoint.Zero)
             {
-                return rigidbody;
+                return;
             }
 
             // Calculate restitution
-            var e = MathFixedPoint.Min(rigidbody.Restitution, collisionTarget.Restitution);
+            var e = MathFixedPoint.Min(rigidbodyA.Restitution, rigidbodyB.Restitution);
 
             // Calculate impulse scalar
             var j = -(FixedPoint.One + e) * velAlongNormal;
@@ -80,8 +145,31 @@ namespace Physics.Core.Engines
             //return rigidbody.CloneAndReplaceDirection((rigidbody.Velocity - impulse * rigidbody.InverseMass).Normalize());
             
             
-            Console.WriteLine($"ResolveCollision {tick} {egid.ID.entityID} dir:{rigidbody.Direction} norm: {manifold.Normal} j:{j} | vel:{rigidbody.Velocity} - imp:{impulse} == {(rigidbody.Velocity - impulse)} norm: {(rigidbody.Velocity - impulse).Normalize()}");
-            return rigidbody.CloneAndReplaceDirection((rigidbody.Velocity - impulse).Normalize());
+            //Console.WriteLine($"ResolveCollision {manifold.EntityIndex1} vs {manifold.EntityIndex2} dir:{rigidbodyA.Direction} norm: {manifold.Normal} j:{j} | vel:{rigidbodyA.Velocity} - imp:{impulse} == {(rigidbodyA.Velocity - impulse)} norm: {(rigidbodyA.Velocity - impulse).Normalize()}");
+
+            if (manifold.CollisionType == CollisionType.AABBToCircle)
+            {
+                if (manifold.EntityIndex1 == index)
+                {
+                    rigidbodyA = rigidbodyA.CloneAndReplaceDirection((rigidbodyA.Velocity - impulse).Normalize());
+                }
+                else
+                {
+                    rigidbodyB = rigidbodyB.CloneAndReplaceDirection((rigidbodyB.Velocity + impulse).Normalize());
+                }
+            }
+            else
+            {
+                if (!rigidbodyA.IsKinematic)
+                {
+                    rigidbodyA = rigidbodyA.CloneAndReplaceDirection((rigidbodyA.Velocity - impulse).Normalize());
+                }
+
+                if (!rigidbodyB.IsKinematic)
+                {
+                    rigidbodyB = rigidbodyB.CloneAndReplaceDirection((rigidbodyB.Velocity + impulse).Normalize());
+                }
+            }
         }
     }
 }

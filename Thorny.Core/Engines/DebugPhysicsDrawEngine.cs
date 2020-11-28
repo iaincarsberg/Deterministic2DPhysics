@@ -73,7 +73,27 @@ namespace Thorny.Core.Engines
 
                     _graphics.DrawBox(Colour.PaleVioletRed, (int) Math.Round(minX), (int) Math.Round(minY), (int) Math.Round(maxX), (int) Math.Round(maxY));
                     
-                    _graphics.DrawText(Colour.White, (int) Math.Round(minX), (int) Math.Round(maxY), egidComponent.ID.entityID.ToString());
+                    _graphics.DrawText(Colour.White, (int) Math.Round(minX), (int) Math.Round(maxY), i.ToString());
+                }
+            }
+            
+            foreach (var ((transforms, colliders, egids, count), _) in entitiesDB.QueryEntities<TransformEntityComponent, CircleColliderEntityComponent, EGIDComponent>(PhysicsGameGroups.RigidBodyWithCircleColliderGroups))
+            {
+                for (var i = 0; i < count; i++)
+                {
+                    ref var transformEntityComponent = ref transforms[i];
+                    ref var circleColliderEntityComponent = ref colliders[i];
+                    ref var egidComponent = ref egids[i];
+
+                    var point = transformEntityComponent.Interpolate(delta);
+
+                    var x = FixedPoint.ConvertToInteger(MathFixedPoint.Round(point.X + circleColliderEntityComponent.Center.X));
+                    var y = FixedPoint.ConvertToInteger(MathFixedPoint.Round(point.Y + circleColliderEntityComponent.Center.Y));
+                    var radius = FixedPoint.ConvertToInteger(circleColliderEntityComponent.Radius);
+                    
+                    _graphics.DrawCircle(Colour.PaleVioletRed, x, y, radius);
+                    
+                    _graphics.DrawText(Colour.White, x - radius, y + radius, i.ToString());
                 }
             }
 
